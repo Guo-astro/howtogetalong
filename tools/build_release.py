@@ -19,6 +19,19 @@ PAGES = ['index.html', '阅读全文.html', 'about.html', 'downloads/html.html',
          'docs/sources.html', 'docs/strategy-notes.html', 'docs/interview-notes.html',
          'docs/research-notes.html', 'docs/platform-notes.html', 'docs/chapter-materials.html']
 PAGES = list(dict.fromkeys([*PAGES, *DOC_SOURCES.values()]))
+PUBLISHED_PDF = ROOT / 'downloads/人情世故指南.pdf'
+
+
+def verify_pdf_version(path, pdf, source_digest, meta):
+    """Allow a retained publication only at its pinned path and exact byte hash."""
+    retained = meta.get('published_pdf', {})
+    if path.resolve() == PUBLISHED_PDF.resolve() and retained.get('version'):
+        if hashlib.sha256(path.read_bytes()).hexdigest() != retained.get('sha256'):
+            raise ValueError('保留的已发布 PDF 指纹不一致，不能作为本轮发布文件')
+        return 'preserved'
+    if source_digest in (pdf.metadata.subject or ''):
+        return 'current'
+    raise ValueError('PDF 正文指纹不一致，请重新生成')
 
 
 class Links(HTMLParser):
@@ -37,7 +50,7 @@ class Links(HTMLParser):
             self.links.append(attrs['src'])
 
 
-def validate():
+def validate(pdf_path=PUBLISHED_PDF):
     from pypdf import PdfReader
     entries, chapters = read_entries()
     snapshots = ROOT / 'skills/social-situations-guide/references'
@@ -57,6 +70,7 @@ def validate():
                                ('docs/读者反馈与案例征集.md', '读者反馈与案例征集.md'),
                                ('docs/版权说明.md', '版权说明.md'),
                                ('docs/补充资料-2026-10-07.md', '补充资料-2026-10-07.md'),
+                               ('docs/补充资料-2026-10-11.md', '补充资料-2026-10-11.md'),
                                ('docs/Morris账号整理/学习笔记.md', 'Morris账号公开内容学习笔记.md'),
                                ('docs/研究资料整理.md', '研究资料整理.md'),
                                ('docs/平台素材收集-2026-10-04.md', '平台素材收集-2026-10-04.md'),
@@ -77,6 +91,8 @@ def validate():
             expected = expected.replace('../研究资料整理.md', '研究资料整理.md')
         elif snapshot == 'v1.16整合记录.md':
             expected = expected.replace('../平台素材收集-2026-10-04.md', '平台素材收集-2026-10-04.md')
+        elif snapshot == '补充资料-2026-10-11.md':
+            expected = expected.replace('核实记录/v1.22.0说明.md', 'v1.22.0整合记录.md')
         if expected != (snapshots / snapshot).read_text(encoding='utf-8'):
             raise ValueError(f'Skill 文档快照过期：{snapshot}')
     for file in [ROOT / 'README.md', *(ROOT / 'skills/social-situations-guide').rglob('*.md')]:
@@ -145,10 +161,12 @@ def validate():
                 if unquote(url.fragment) not in parsed[target].ids and not dynamic:
                     raise ValueError(f'网页锚点缺失：{file.name} → {link}')
 
-    pdf = PdfReader(ROOT / 'downloads/人情世故指南.pdf')
+    pdf = PdfReader(pdf_path)
     digest = hashlib.sha256(source.read_bytes()).hexdigest()
-    if digest not in (pdf.metadata.subject or ''):
-        raise ValueError('PDF 正文指纹不一致，请重新生成')
+    if verify_pdf_version(pdf_path, pdf, digest, meta) == 'preserved':
+        print(f'校验通过：{len(entries)} 条正文、Skill 快照、{len(PAGES)} 个网页入口；'
+              f'已发布 PDF v{meta["published_pdf"]["version"]} 保持原字节指纹。')
+        return
     outline_titles = []
     def visit(items):
         for item in items:
@@ -189,7 +207,12 @@ def main():
     parser.add_argument('--check', action='store_true', help='Only validate existing outputs')
     parser.add_argument('--font', help='Chinese TrueType font used for PDF')
     parser.add_argument('--bold-font', help='Bold Chinese TrueType font used for PDF')
+    parser.add_argument('--pdf-output', type=Path, default=PUBLISHED_PDF,
+                        help='PDF destination; use a path outside the repository for local previews')
     args = parser.parse_args()
+    meta = json.loads((ROOT / 'project.json').read_text(encoding='utf-8'))
+    if not args.check and meta.get('published_pdf') and args.pdf_output.resolve().is_relative_to(ROOT):
+        parser.error('本版保留已发布 PDF；请用 --pdf-output 指定仓库外的本地预览路径，或在确认发布新版后移除 published_pdf 登记')
     try:
         import reportlab  # noqa: F401
         import pypdf  # noqa: F401
@@ -200,9 +223,10 @@ def main():
         for option, value in [('--font', args.font), ('--bold-font', args.bold_font)]:
             if value:
                 fonts.extend([option, value])
-        for script, options in [('build.py', []), ('build_docs.py', []), ('build_pdf.py', fonts)]:
+        pdf_options = [*fonts, '--output', str(args.pdf_output)]
+        for script, options in [('build.py', []), ('build_docs.py', []), ('build_pdf.py', pdf_options)]:
             subprocess.run([sys.executable, str(ROOT / 'tools' / script), *options], check=True)
-    validate()
+    validate(args.pdf_output)
 
 
 if __name__ == '__main__':

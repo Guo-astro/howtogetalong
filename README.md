@@ -1,6 +1,6 @@
 # 人情世故指南
 
-![人情世故指南封面](docs/assets/cover-growth-v121.png)
+![人情世故指南封面](docs/assets/cover-growth-v122.png)
 
 ## 项目简介
 
@@ -10,7 +10,7 @@
 
 从合作、求助、拒绝，到金钱、礼节和冲突，每条都写清判断关键、行动前准备、具体做法、示例表达、可能效果、代价和例外。希望帮助你少走弯路，更清楚地理解人与事，逐步学会怎么做、怎么说，在进入社会后更从容地处理具体问题。你可以选择相近的场景试用，再根据自己的关系与环境调整。
 
-10 章 76 条 · 全部为经验建议。
+10 章 77 条 · 全部为经验建议。
 
 > **免责声明：仅供参考。** 本项目内容仅供学习与交流参考，属于经验建议，不保证适用于所有人或取得特定效果。具体问题请根据事实情况分析，结合自身处境、关系与适用规则独立判断，不宜直接照搬示例。
 
@@ -18,13 +18,15 @@
 
 | 入口 | 内容 |
 |---|---|
-| 下载 | [PDF](https://github.com/kkk-bot/HowToGetAlong/raw/refs/heads/main/downloads/%E4%BA%BA%E6%83%85%E4%B8%96%E6%95%85%E6%8C%87%E5%8D%97.pdf) · [HTML 检索页](https://kkk-bot.github.io/HowToGetAlong/downloads/html.html) · [Markdown](https://github.com/kkk-bot/HowToGetAlong/raw/refs/heads/main/%E5%AE%8C%E6%95%B4%E6%8C%87%E5%8D%97.md) · [项目 ZIP](https://github.com/kkk-bot/HowToGetAlong/archive/refs/heads/main.zip) |
+| 下载 | [PDF v1.21.0](https://github.com/kkk-bot/HowToGetAlong/raw/refs/heads/main/downloads/%E4%BA%BA%E6%83%85%E4%B8%96%E6%95%85%E6%8C%87%E5%8D%97.pdf) · [HTML 检索页](https://kkk-bot.github.io/HowToGetAlong/downloads/html.html) · [Markdown](https://github.com/kkk-bot/HowToGetAlong/raw/refs/heads/main/%E5%AE%8C%E6%95%B4%E6%8C%87%E5%8D%97.md) · [项目 ZIP](https://github.com/kkk-bot/HowToGetAlong/archive/refs/heads/main.zip) |
 | 阅读 | [完整文字版](完整指南.md) · [使用指南](https://kkk-bot.github.io/HowToGetAlong/docs/usage.html) |
 | 练习 | [交流复盘与场景练习](https://kkk-bot.github.io/HowToGetAlong/docs/practice.html) |
 | 反馈 | [读者反馈与案例征集](https://kkk-bot.github.io/HowToGetAlong/docs/feedback.html) · [填写读者反馈](https://github.com/kkk-bot/HowToGetAlong/issues/new?template=reading-feedback.yml) |
 | 查阅 | [依据与核实记录](https://kkk-bot.github.io/HowToGetAlong/docs/verification.html) · [编写与纠错规范](https://kkk-bot.github.io/HowToGetAlong/docs/editorial-guide.html) · [论文与文章资料](https://kkk-bot.github.io/HowToGetAlong/docs/research-notes.html) · [访谈与博客笔记](https://kkk-bot.github.io/HowToGetAlong/docs/interview-notes.html) · [来源索引](https://kkk-bot.github.io/HowToGetAlong/%E9%98%85%E8%AF%BB%E5%85%A8%E6%96%87.html#sources) |
 
 点击上方“阅读与检索”或“连续阅读”可直接在线阅读。需要离线使用时，下载项目 ZIP，解压后用浏览器打开 `index.html` 或 `阅读全文.html`。
+
+本轮网页与文字内容已更新，PDF 下载暂保留 v1.21.0。
 
 “HTML 检索页”下载的是项目 ZIP 里的 `index.html`，保存后可直接用浏览器打开，离线搜索和查看全部条目；需要一并使用其他阅读页与下载资料时，请下载项目 ZIP。
 
@@ -53,7 +55,7 @@
 - 下载 [完整文字版](完整指南.md)，离线阅读或继续编辑。
 - 不知道从哪里开始，先看 [使用指南](https://kkk-bot.github.io/HowToGetAlong/docs/usage.html)。
 - 条目支持复制示例、收藏和分享。收藏保存在当前浏览器；复制不可用时可手动选择文本。分享链接指向公开在线条目。
-- 8 个场景新增接续对话，展开后可查看第一次表达、后续回应和调整信号；均为编写情境。
+- 9 个场景包含接续对话，展开后可查看第一次表达、后续回应和调整信号；均为编写情境。
 - 想提出用词、检索或场景建议，可查看[读者反馈与案例征集](docs/读者反馈与案例征集.md)。
 - 喜欢纯文字，可以按下面的问题读 `book/` 正文。
 - 每条的“可以怎么说”都是本项目拟写的示例，不是平台原话，也不保证对方接受。
@@ -68,7 +70,7 @@
 |---|---|---|
 | 研究背景 | 原始研究来源、研究对象、主要结论与局限 | 已在部分条目注明背景与阅读范围；具体动作未逐条验证 |
 | 制度规定 | 官方文本、适用地区或机构、截至日期 | 暂无具体制度结论 |
-| 经验建议 | 标明为可选办法，列出代价、例外与失效可能 | 76 条 |
+| 经验建议 | 标明为可选办法，列出代价、例外与失效可能 | 77 条 |
 
 “可能换回什么”是编辑预期，不是已测得的效果。“花掉什么”包含时间、金钱、压力与关系代价。同一句话面对室友、老师、朋友或领导，效果可能不同。
 
@@ -84,12 +86,12 @@
 
 ```bash
 python3 -m pip install reportlab pypdf
-python3 tools/build_release.py
+python3 tools/build_release.py --pdf-output ../人情世故指南-本地预览.pdf
 ```
 
 统一脚本会检查条目字段、连续编号和交叉引用，生成检索页、连续阅读页、练习与查阅页、完整 Markdown、PDF，并同步 Skill 正文快照。最后校验网页链接、PDF 条目书签和来源链接，避免发布旧的导出文件。版本与定位在 `project.json` 中维护。
 
-PDF 默认使用 macOS 的中文字体。其他系统可给统一命令加上 `--font /path/to/chinese.ttf --bold-font /path/to/chinese-bold.ttf`，指定常规及粗体中文 TrueType 字体。只检查已生成文件时运行 `python3 tools/build_release.py --check`。搜索实现放在 `tools/search.js`，正文与标签仍以 `book/` 为准。
+PDF 默认使用 macOS 的中文字体。其他系统可给统一命令加上 `--font /path/to/chinese.ttf --bold-font /path/to/chinese-bold.ttf`，指定常规及粗体中文 TrueType 字体。只检查已生成文件时运行 `python3 tools/build_release.py --check`。暂不发布新版 PDF 时，在 `project.json` 的 `published_pdf` 中登记已发布版本与 SHA-256，并用 `--pdf-output /仓库外路径/本地预览.pdf` 构建。脚本会校验本地新版及线上保留版，防止误覆盖；决定发布新版 PDF 时再移除该登记并运行默认构建。搜索实现放在 `tools/search.js`，正文与标签仍以 `book/` 为准。
 
 修改检索逻辑后，生成页面并运行 `node tools/test_search.cjs`，检查自然语言搜索、筛选与条目跳转的刷新状态；此检查需要 Node.js。
 

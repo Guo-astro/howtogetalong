@@ -1,5 +1,5 @@
 {
-  "date": "2026-10-07",
+  "date": "2026-10-11",
   "sources": [
     {
       "id": "P01",
@@ -287,6 +287,33 @@
       "url": "https://cor.inquirygroup.org/research/lateral-reading-on-the-open-internet/",
       "citation": "Wineburg, S., Breakstone, J., McGrew, S., Smith, M. D., & Ortega, T. (2022). Lateral Reading on the Open Internet: A District-Wide Field Study in High School Government Classes. Journal of Educational Psychology, 114(5), 893–909. DOI：10.1037/edu0000740。",
       "status": "已读研究团队机构摘要、检索可见的作者稿摘要和机构课程简介；未取得论文全文，未观看课程视频",
+      "material_type": "研究论文"
+    },
+    {
+      "id": "P31",
+      "title": "提供拒绝用语与感受到的选择自由",
+      "date": "2024-01-05；核实日期 2026-10-11",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10770178/",
+      "status": "已读公开全文的方法、结果与讨论；两项美国大学实验，实际答应比例的合并差异 p=.053，不解释为已证实提高答应率",
+      "citation": "Schlund, R., Sommers, R., & Bohns, V. K. (2024). Giving people the words to say no leads them to feel freer to say yes. Scientific Reports, 14, 576. DOI：10.1038/s41598-023-50532-3。",
+      "material_type": "研究论文"
+    },
+    {
+      "id": "P32",
+      "title": "员工发声与沉默：组织环境和表达条件",
+      "date": "2023 年卷期；在线发表 2022-10-06；核实日期 2026-10-11",
+      "url": "https://www.annualreviews.org/content/journals/10.1146/annurev-orgpsych-120920-054654",
+      "status": "已读开放全文的定义、情境与实践部分；综述所选 158 篇 2014—2021 年论文，不能由沉默推断个人动机",
+      "citation": "Morrison, E. W. (2023). Employee Voice and Silence: Taking Stock a Decade Later. Annual Review of Organizational Psychology and Organizational Behavior, 10, 79–107. DOI：10.1146/annurev-orgpsych-120920-054654。",
+      "material_type": "文献综述"
+    },
+    {
+      "id": "P33",
+      "title": "体验礼物与实物礼物的关系感受差异",
+      "date": "2017 年卷期；在线发表 2016-12-11；核实日期 2026-10-11",
+      "url": "https://www.anderson.ucla.edu/sites/default/files/documents/areas/fac/marketing/mogilner/Chan%20Mogilner%20JCR%202016%20Experiential%20Gifts.pdf",
+      "status": "已读作者机构公开论文的方法、结果与局限；四项赠礼或回忆研究，主要是单次赠礼与短期关系感受，未证明长期效果或人人偏好体验",
+      "citation": "Chan, C., & Mogilner, C. (2017). Experiential Gifts Foster Stronger Social Relationships Than Material Gifts. Journal of Consumer Research, 43(6), 913–931. DOI：10.1093/jcr/ucw067。",
       "material_type": "研究论文"
     }
   ]

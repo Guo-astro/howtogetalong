@@ -80,6 +80,7 @@ PAGE = r'''<!doctype html>
 def main():
     entries, chapters = read_entries()
     meta = json.loads((ROOT / 'project.json').read_text(encoding='utf-8'))
+    pdf_label = '下载 PDF' + (f" v{meta['published_pdf']['version']}" if meta.get('published_pdf') else '')
     copyright_text = (ROOT / 'docs/版权说明.md').read_text(encoding='utf-8')
     copyright_body, _ = render_markdown(copyright_text.split('\n\n', 1)[1], 'docs/版权说明.md', 'index.html')
     data = json.dumps(entries, ensure_ascii=False).replace('<', '\\u003c')
@@ -96,7 +97,7 @@ def main():
     page = page.replace('</main>', '</main><div id="action-status" class="toast" role="status" aria-live="polite"></div><dialog id="copy-dialog" aria-labelledby="copy-title"><h2 id="copy-title">手动复制</h2><p id="copy-help">浏览器没有允许自动复制，文字已选中，可使用系统的复制操作。</p><label for="copy-text">待复制的内容</label><textarea id="copy-text" readonly></textarea><p><button id="close-copy" type="button">关闭</button></p></dialog>', 1)
     page = page.replace('<a href="docs/research-notes.html">论文与文章资料</a>', '<a href="docs/research-notes.html">论文与文章资料</a> · <a href="docs/platform-notes.html">短视频与网络素材</a> · <a href="docs/feedback.html">读者反馈与案例征集</a>')
     page = page.replace('FIRST EDITION', 'PRACTICAL GUIDE')
-    page = page.replace('<a href="README.md">项目说明 ↗</a>', '<span class="navlinks"><a href="阅读全文.html">阅读全文 ↗</a><a href="downloads/人情世故指南.pdf" download>下载 PDF</a><a href="docs/practice.html">场景练习</a><a href="about.html">项目说明 ↗</a></span>')
+    page = page.replace('<a href="README.md">项目说明 ↗</a>', f'<span class="navlinks"><a href="阅读全文.html">阅读全文 ↗</a><a href="downloads/人情世故指南.pdf" download>{pdf_label}</a><a href="docs/practice.html">场景练习</a><a href="about.html">项目说明 ↗</a></span>')
     page = page.replace('这是经验建议初稿，没有验证成功率', '本版全部为经验建议，未验证成功率')
     page = page.replace('校园 / 实习 / 日常交往', '校园 / 求职 / 职场 / 日常交往')
     page = page.replace('试试：改作业、借钱、没回复、不喝酒……', '试试：内推、借钱、送礼、被批评、离职……')
@@ -180,9 +181,10 @@ def main():
     with (refs / '目录.md').open('a', encoding='utf-8') as stream:
         stream.write('\n- [章节扩充资料](章节扩充资料-2026-10-04.md)\n- [v1.17 章节扩充整合记录](v1.17整合记录.md)\n')
     shutil.copyfile(ROOT / 'docs/补充资料-2026-10-07.md', refs / '补充资料-2026-10-07.md')
+    (refs / '补充资料-2026-10-11.md').write_text((ROOT / 'docs/补充资料-2026-10-11.md').read_text(encoding='utf-8').replace('核实记录/v1.22.0说明.md', 'v1.22.0整合记录.md'), encoding='utf-8')
     shutil.copyfile(ROOT / 'docs/读者反馈与案例征集.md', refs / '读者反馈与案例征集.md')
     with (refs / '目录.md').open('a', encoding='utf-8') as stream:
-        stream.write('\n- [求建议、协商与信息核查资料](补充资料-2026-10-07.md)\n- [读者反馈与案例征集](读者反馈与案例征集.md)\n')
+        stream.write('\n- [求建议、协商与信息核查资料](补充资料-2026-10-07.md)\n- [拒绝、发言与日常相处资料](补充资料-2026-10-11.md)\n- [读者反馈与案例征集](读者反馈与案例征集.md)\n')
     if meta['version'] != '1.17':
         current_record = ROOT / f'docs/核实记录/v{meta["version"]}说明.md'
         current_snapshot = f'v{meta["version"]}整合记录.md'
@@ -216,7 +218,7 @@ def main():
     body += '<p>示例表达可以调整，效果取决于关系和环境。完整阅读情境、代价和例外后再决定；具体制度请查适用规则。</p>'
     body += '<p>先判断目标与条件，再做准备、选择行动，根据反馈调整。框架受《孙子兵法》启发，古文不是这些生活建议有效的证明。<a href="docs/strategy-notes.html">查看来源与转译边界</a>。</p>'
     body += '<p><a href="docs/Morris账号整理/阅读笔记.html">Morris 来源笔记</a> · <a href="docs/interview-notes.html">访谈与博客笔记</a> · <a href="docs/research-notes.html">论文与文章资料</a> · <a href="docs/verification.html">查看本次整合记录</a>；正文补充仍为经验建议。</p>'
-    body += '<nav><a href="index.html">返回检索页</a> · <a href="downloads/人情世故指南.pdf" download>下载 PDF</a> · <a href="完整指南.md" download>下载完整正文</a> · <a href="docs/practice.html">场景练习</a> · <button onclick="window.print()">打印 / 保存为 PDF</button></nav><h2>目录</h2><ol>'
+    body += f'<nav><a href="index.html">返回检索页</a> · <a href="downloads/人情世故指南.pdf" download>{pdf_label}</a> · <a href="完整指南.md" download>下载完整正文</a> · <a href="docs/practice.html">场景练习</a> · <button onclick="window.print()">打印 / 保存为 PDF</button></nav><h2>目录</h2><ol>'
     body += ''.join(f'<li><a href="#chapter-{c["number"]}">{html.escape(c["title"])}</a></li>' for c in chapters) + '</ol><p><a href="#practice">附录：交流复盘与场景练习</a> · <a href="#sources">来源索引</a> · <a href="#copyright">版权说明</a></p>'
     for chapter in chapters:
         body += f'<h2 class="chapter" id="chapter-{chapter["number"]}">{html.escape(chapter["title"])}</h2>'

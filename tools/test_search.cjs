@@ -107,6 +107,8 @@ search.query('5.7');
 assert.equal(search.cards.size, 0, 'Entry-number search must respect selected filters');
 search.element('chapter').value = '';
 for (const [query, target] of [
+  ['开会被打断', 'entry-8.8'], ['总被打断怎么办', 'entry-8.8'],
+  ['别人抢话', 'entry-8.8'], ['奶茶拼单', 'entry-4.3'],
   ['改作业', 'entry-1.1'], ['同学让我改作业', 'entry-1.1'],
   ['帮同学改作业', 'entry-1.1'], ['帮忙改作业', 'entry-1.1'],
   ['改 作业', 'entry-1.1'], ['改作业怎么办？', 'entry-1.1'],
@@ -255,7 +257,8 @@ const source = JSON.parse(sourceData).find(source => source.id === 'P05');
 assert(offline.run('renderField("依据", "参考 P05")').includes('href="' + source.url.replaceAll('&', '&amp;') + '"'));
 assert.match(offline.run('renderField("接续对话", "你先说：<测试>\\n你再回应：好")'), /&lt;测试&gt;<\/p><p>你再回应/);
 const dialogues = JSON.parse(data).filter(entry => entry.fields['接续对话']);
-assert.equal(dialogues.length, 8);
+assert.equal(dialogues.length, 9);
+assert(dialogues.some(entry => entry.id === '8.8'), 'The interruption scenario includes a follow-up dialogue');
 for (const entry of dialogues) {
   assert(entry.fields['接续对话'].includes('\n'));
   assert(entry.fields['接续对话'].includes('编写情境'));

@@ -1,5 +1,5 @@
 {
-  "date": "2026-10-07",
+  "date": "2026-10-11",
   "sources": [
     {
       "id": "R01",
@@ -67,6 +67,46 @@
       "citation": "Stanford GSB, Think Fast, Talk Smart, Episode 42. Space, Pace, and Grace: How to Handle Challenging Conversations. Collins Dobbs and Matt Abrahams.",
       "status": "检索工具直接打开返回 403；普通公开网页请求取得官方转录正文并已读取，未收听音频；不是效果实验",
       "material_type": "官方访谈文字稿"
+    },
+    {
+      "id": "R16",
+      "title": "Stanford Think Fast: You Asked, We Answered",
+      "date": "2020-08-14；核实日期 2026-10-11",
+      "url": "https://www.gsb.stanford.edu/insights/think-fast-you-asked-we-answered",
+      "status": "已读检索返回的官方问答文字稿；直接页面访问受限，未收听音频。仅借鉴发言准备与复述插话的实践思路",
+      "material_type": "官方播客文字稿"
+    },
+    {
+      "id": "R17",
+      "title": "Stanford 与 Amy Gallo：Communicating Through Conflict: How to Get Along with Anyone",
+      "date": "2024-05-29；核实日期 2026-10-11",
+      "url": "https://www.gsb.stanford.edu/insights/communicating-through-conflict-how-get-along-anyone",
+      "status": "已读检索返回的官方访谈文字稿，重点核对约 06:42—09:06 的目标与冲突安排；未收听音频，专家经验不是效果实验",
+      "material_type": "官方访谈文字稿"
+    },
+    {
+      "id": "R18",
+      "title": "TED Ideas / Celeste Headlee：Why we should all stop saying “I know exactly how you feel”",
+      "date": "2017-09-21；核实日期 2026-10-11",
+      "url": "https://ideas.ted.com/why-we-should-all-stop-saying-i-know-exactly-how-you-feel/",
+      "status": "已读作者文章，以个人经历与对话经验为主；不作为心理机制或普遍效果的证据",
+      "material_type": "作者博客文章"
+    },
+    {
+      "id": "R19",
+      "title": "在场 Presence No.65：谈及拒绝，很少拒绝就能拥有更好的关系吗？",
+      "date": "完整发布日期待核对；核实日期 2026-10-11",
+      "url": "https://www.xiaoyuzhoufm.com/episode/65e50293ad514f3bc8259d93",
+      "status": "仅核对小宇宙节目简介与 29:16、40:00 时间标记，未收听 53 分钟完整音频；只作拒绝与关系场景的选题线索",
+      "material_type": "播客简介"
+    },
+    {
+      "id": "R20",
+      "title": "真的很响 EP28：学会拒绝，大胆说不",
+      "date": "完整发布日期待核对；核实日期 2026-10-11",
+      "url": "https://www.xiaoyuzhoufm.com/episode/66ef996d6920a36bfcbf1dd9",
+      "status": "仅核对节目简介及 06:23 奶茶拼单线索，未收听 38 分钟完整音频；不采用未核实的曲线、比例或人格断言",
+      "material_type": "播客简介"
     }
   ]
 }

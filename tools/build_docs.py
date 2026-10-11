@@ -154,7 +154,7 @@ def rewrite_url(url: str, source: str, output: str) -> str:
 
 
 def inline(text: str, source: str, output: str) -> str:
-    """Escape text, then render this project's inline Markdown without raw HTML."""
+    """Escape text and render Markdown plus fixed-format, width-limited images."""
     tokens: list[str] = []
 
     def token(value: str) -> str:
@@ -162,6 +162,17 @@ def inline(text: str, source: str, output: str) -> str:
         return f'\x00{len(tokens)-1}\x00'
 
     text = re.sub(r'`([^`]+)`', lambda m: token('<code>' + html.escape(m[1]) + '</code>'), text)
+
+    def sized_image(match: re.Match) -> str:
+        url, alt, width = match.groups()
+        return token('<img src="' + html.escape(rewrite_url(url, source, output), quote=True)
+                     + '" alt="' + html.escape(html.unescape(alt), quote=True)
+                     + '" width="' + width + '" loading="lazy" style="width:' + width
+                     + 'px;max-width:100%;height:auto">')
+
+    # Only this fixed image format is accepted; other raw HTML stays escaped.
+    text = re.sub(r'<img\s+src="([^"]+)"\s+alt="([^"]*)"\s+width="([1-9]\d{0,3})"\s*/?>',
+                  sized_image, text)
 
     def image(match: re.Match) -> str:
         alt, url = match[1], match[2]

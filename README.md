@@ -36,7 +36,7 @@
 
 欢迎关注项目更新与后续版本信息，交流阅读心得。打开小红书扫描下方二维码，或搜索小红书号找到我。
 
-![YOLO 的小红书二维码，小红书号 4287159956](docs/assets/xiaohongshu-yolo.jpg)
+<img src="docs/assets/xiaohongshu-yolo.jpg" alt="YOLO 的小红书二维码，小红书号 4287159956" width="300">
 
 ---
 

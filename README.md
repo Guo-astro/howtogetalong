@@ -38,7 +38,7 @@
 
 打开小红书扫描下方二维码，或搜索小红书号 **4287159956** 找到我。GitHub 公开版仍可免费阅读。
 
-<img src="docs/assets/xiaohongshu-yolo.jpg" alt="YOLO 的小红书二维码，小红书号 4287159956" width="300">
+<img src="docs/assets/xiaohongshu-yolo-20261012.jpg" alt="YOLO 的小红书二维码，小红书号 4287159956" width="300">
 
 ## 作者抖音
 

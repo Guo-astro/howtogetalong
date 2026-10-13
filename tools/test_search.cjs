@@ -109,6 +109,8 @@ search.element('chapter').value = '';
 for (const [query, target] of [
   ['开会被打断', 'entry-8.8'], ['总被打断怎么办', 'entry-8.8'],
   ['别人抢话', 'entry-8.8'], ['奶茶拼单', 'entry-4.3'],
+  ['领导说一起点饮料', 'entry-4.3'], ['领导点奶茶要不要AA', 'entry-4.3'],
+  ['领导请喝咖啡要转钱吗', 'entry-4.3'], ['领导让点奶茶怎么付款', 'entry-4.3'],
   ['改作业', 'entry-1.1'], ['同学让我改作业', 'entry-1.1'],
   ['帮同学改作业', 'entry-1.1'], ['帮忙改作业', 'entry-1.1'],
   ['改 作业', 'entry-1.1'], ['改作业怎么办？', 'entry-1.1'],
@@ -162,6 +164,8 @@ for (const [query, target] of [
 }
 search.query('送礼火星矿石');
 assert.equal(search.cards.size, 0, 'Unknown content must not become a broad gift search');
+search.query('领导点奶茶火星矿石');
+assert.equal(search.cards.size, 0, 'Drink aliases must preserve unknown query content');
 search.query('改作业火星矿石');
 assert.equal(search.cards.size, 0, 'Homework aliases must preserve unknown query content');
 search.query('offer 催我答复 火星矿石');
@@ -257,7 +261,8 @@ const source = JSON.parse(sourceData).find(source => source.id === 'P05');
 assert(offline.run('renderField("依据", "参考 P05")').includes('href="' + source.url.replaceAll('&', '&amp;') + '"'));
 assert.match(offline.run('renderField("接续对话", "你先说：<测试>\\n你再回应：好")'), /&lt;测试&gt;<\/p><p>你再回应/);
 const dialogues = JSON.parse(data).filter(entry => entry.fields['接续对话']);
-assert.equal(dialogues.length, 9);
+assert.equal(dialogues.length, 10);
+assert(dialogues.some(entry => entry.id === '4.3'), 'Drink payment includes follow-up dialogues');
 assert(dialogues.some(entry => entry.id === '8.8'), 'The interruption scenario includes a follow-up dialogue');
 for (const entry of dialogues) {
   assert(entry.fields['接续对话'].includes('\n'));

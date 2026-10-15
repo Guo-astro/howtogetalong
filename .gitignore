@@ -3,3 +3,5 @@ __pycache__/
 *.py[cod]
 .playwright-cli/
 output/playwright/
+# Paid delivery PDFs are kept outside this public repository.
+*付费下载版*.pdf

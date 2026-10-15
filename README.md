@@ -18,7 +18,7 @@
 
 | 入口 | 内容 |
 |---|---|
-| 下载 | [PDF v1.21.0](https://github.com/kkk-bot/HowToGetAlong/raw/refs/heads/main/downloads/%E4%BA%BA%E6%83%85%E4%B8%96%E6%95%85%E6%8C%87%E5%8D%97.pdf) · [HTML 检索页](https://kkk-bot.github.io/HowToGetAlong/downloads/html.html) · [Markdown](https://github.com/kkk-bot/HowToGetAlong/raw/refs/heads/main/%E5%AE%8C%E6%95%B4%E6%8C%87%E5%8D%97.md) · [项目 ZIP](https://github.com/kkk-bot/HowToGetAlong/archive/refs/heads/main.zip) |
+| 免费下载 | [公开版 PDF v1.21.0](https://github.com/kkk-bot/HowToGetAlong/raw/refs/heads/main/downloads/%E4%BA%BA%E6%83%85%E4%B8%96%E6%95%85%E6%8C%87%E5%8D%97.pdf) · [HTML 检索页](https://kkk-bot.github.io/HowToGetAlong/downloads/html.html) · [Markdown](https://github.com/kkk-bot/HowToGetAlong/raw/refs/heads/main/%E5%AE%8C%E6%95%B4%E6%8C%87%E5%8D%97.md) · [项目 ZIP](https://github.com/kkk-bot/HowToGetAlong/archive/refs/heads/main.zip) |
 | 阅读 | [完整文字版](完整指南.md) · [使用指南](https://kkk-bot.github.io/HowToGetAlong/docs/usage.html) |
 | 练习 | [交流复盘与场景练习](https://kkk-bot.github.io/HowToGetAlong/docs/practice.html) |
 | 反馈 | [读者反馈与案例征集](https://kkk-bot.github.io/HowToGetAlong/docs/feedback.html) · [填写读者反馈](https://github.com/kkk-bot/HowToGetAlong/issues/new?template=reading-feedback.yml) |
@@ -28,13 +28,15 @@
 
 本轮网页与文字内容已更新，PDF 下载暂保留 v1.21.0。
 
+**版本区分：** 本仓库、在线网页及上方下载均为免费公开版。付费下载版为独立交付的 PDF，封面与页脚标注“付费下载版 P1.0”，不随本仓库或项目 ZIP 提供。付费文件提供排版与离线阅读，其正文也可在本项目免费在线阅读；具体购买内容、更新范围和交付方式以正式商品页为准。
+
 “HTML 检索页”下载的是项目 ZIP 里的 `index.html`，保存后可直接用浏览器打开，离线搜索和查看全部条目；需要一并使用其他阅读页与下载资料时，请下载项目 ZIP。
 
 ## 作者小红书
 
 **YOLO** · 小红书号：**4287159956**
 
-欢迎关注项目更新，交流阅读心得。**计划推出《人情世故指南·付费增强版》，补充更完整的情境对话、场景练习和离线资料包。** 后续内容预览、上线消息与购买方式会在小红书发布，具体内容和交付方式以正式商品页面为准。
+欢迎关注项目更新，交流阅读心得。**《人情世故指南·付费下载版》采用独立 PDF 文件交付，正文仍可在本项目免费在线阅读。** 内容预览、上线消息与购买方式会在小红书发布，具体内容、更新范围和交付方式以正式商品页面为准。
 
 打开小红书扫描下方二维码，或搜索小红书号 **4287159956** 找到我。GitHub 公开版仍可免费阅读。
 

@@ -7,6 +7,8 @@ import re
 from urllib.parse import urljoin
 from xml.sax.saxutils import escape, quoteattr
 
+from PIL import Image as PillowImage
+from reportlab.lib.enums import TA_CENTER
 from reportlab.lib import colors
 from reportlab.lib.pagesizes import A4
 from reportlab.lib.styles import ParagraphStyle
@@ -14,6 +16,7 @@ from reportlab.pdfbase import pdfmetrics
 from reportlab.pdfbase.ttfonts import TTFont, TTFError
 from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer, PageBreak, Image
 from reportlab.platypus.tableofcontents import TableOfContents
+from reportlab.platypus import Table, TableStyle
 from site_assets import COPYRIGHT_NOTICE
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -165,15 +168,57 @@ def bookmarked_paragraph(text, style, key, level=0, toc=False):
     return paragraph
 
 
+def author_introduction(body, chapter):
+    centered = ParagraphStyle('author-body', parent=body, alignment=TA_CENTER,
+                              fontSize=11, leading=20, spaceAfter=14)
+    title = ParagraphStyle('author-title', parent=chapter, alignment=TA_CENTER,
+                           fontSize=24, leading=34, spaceAfter=16)
+    platform = ParagraphStyle('author-platform', parent=centered,
+                              fontName='GuideChineseBold', fontSize=15, leading=24)
+    account = ParagraphStyle('author-account', parent=centered, fontSize=10.5, leading=18)
+    profiles = [
+        ('抖音', 'Y O L O', '793147359', 'douyin-yolo.jpg'),
+        ('小红书', 'YOLO', '4287159956', 'xiaohongshu-yolo-20261012.jpg'),
+    ]
+    heights = []
+    for _, _, _, filename in profiles:
+        with PillowImage.open(ROOT / 'docs/assets' / filename) as original:
+            heights.append(210 * original.height / original.width)
+    columns = []
+    for (label, name, number, filename), height in zip(profiles, heights):
+        columns.append([
+            Paragraph(label, platform), Paragraph(name, centered),
+            Paragraph(label + '号：' + number, account),
+            Image(str(ROOT / 'docs/assets' / filename), width=210, height=height),
+            Spacer(1, max(heights) - height + 12),
+            Paragraph('打开' + label + '扫一扫', centered),
+        ])
+    accounts = Table([columns], colWidths=[(A4[0] - 104) / 2] * 2,
+                     style=TableStyle([
+                         ('VALIGN', (0, 0), (-1, -1), 'TOP'),
+                         ('LEFTPADDING', (0, 0), (-1, -1), 8),
+                         ('RIGHTPADDING', (0, 0), (-1, -1), 8),
+                         ('TOPPADDING', (0, 0), (-1, -1), 0),
+                         ('BOTTOMPADDING', (0, 0), (-1, -1), 0),
+                     ]))
+    return [PageBreak(), Spacer(1, 18),
+            bookmarked_paragraph('关注作者', title, 'author-accounts', toc=True),
+            Paragraph('作者：YOLO · 《人情世故指南》整理与维护', centered),
+            Paragraph('这是免费公开版。欢迎到抖音或小红书关注项目更新，交流阅读心得。'
+                      '<br/>如果这份指南对你有帮助，欢迎关注、点赞支持一下。谢谢各位的支持！', centered),
+            Spacer(1, 12), accounts, Spacer(1, 12),
+            Paragraph('打开对应 App 扫码，或搜索上方账号找到作者。', centered)]
+
+
 def build(input_path=ROOT / '完整指南.md', output_path=OUT,
-          font_path=DEFAULT_FONT, bold_font_path=DEFAULT_BOLD_FONT):
+          font_path=DEFAULT_FONT, bold_font_path=DEFAULT_BOLD_FONT, metadata=None):
     input_path, output_path = Path(input_path), Path(output_path)
     lines = input_path.read_text(encoding='utf-8').splitlines()
     register_fonts(font_path, bold_font_path, lines)
     entries, sources = discover_targets(lines)
     body, chapter, heading, example = styles()
     output_path.parent.mkdir(parents=True, exist_ok=True)
-    meta = json.loads((ROOT / 'project.json').read_text(encoding='utf-8'))
+    meta = metadata if metadata is not None else json.loads((ROOT / 'project.json').read_text(encoding='utf-8'))
     story = [Spacer(1, 34), Image(str(ROOT / meta.get('cover', 'docs/assets/cover-growth-v120.png')),
              width=A4[0] - 92, height=(A4[0] - 92) * 2 / 3), Spacer(1, 30)]
     first_title, in_body, in_sources = True, False, False
@@ -187,6 +232,7 @@ def build(input_path=ROOT / '完整指南.md', output_path=OUT,
                 first_title = False
                 continue
             if not in_body:
+                story.extend(author_introduction(body, chapter))
                 story.extend([PageBreak(), Paragraph('目录', chapter)])
                 toc = TableOfContents()
                 toc.levelStyles = [ParagraphStyle('toc', parent=body, leading=24, spaceAfter=8)]
@@ -245,9 +291,11 @@ def main():
                         help='Markdown source path (defaults to 完整指南.md)')
     parser.add_argument('--output', type=Path, default=OUT,
                         help='PDF output path (defaults to downloads/人情世故指南.pdf)')
+    parser.add_argument('--metadata', type=Path, help='Frozen publication metadata for rebuilding a retained edition')
     args = parser.parse_args()
     try:
-        output = build(args.input, args.output, args.font, args.bold_font)
+        metadata = json.loads(args.metadata.read_text(encoding='utf-8')) if args.metadata else None
+        output = build(args.input, args.output, args.font, args.bold_font, metadata=metadata)
     except (ValueError, FileNotFoundError) as error:
         parser.error(str(error))
     print(output)

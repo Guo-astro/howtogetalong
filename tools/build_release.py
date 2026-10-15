@@ -163,9 +163,19 @@ def validate(pdf_path=PUBLISHED_PDF):
 
     pdf = PdfReader(pdf_path)
     digest = hashlib.sha256(source.read_bytes()).hexdigest()
+    if len(pdf.pages) < 3 or not all(label in pdf.pages[1].extract_text()
+                                   for label in ['关注作者', '793147359', '4287159956']):
+        raise ValueError('PDF 第 2 页缺少作者账号介绍')
+    if len(pdf.pages[1].images) != 2 or '目录' not in pdf.pages[2].extract_text():
+        raise ValueError('PDF 作者二维码或目录页位置不正确')
     if verify_pdf_version(pdf_path, pdf, digest, meta) == 'preserved':
+        retained = meta['published_pdf']
+        if retained.get('source'):
+            archived_digest = hashlib.sha256((ROOT / retained['source']).read_bytes()).hexdigest()
+            if archived_digest != retained.get('source_sha256') or archived_digest not in (pdf.metadata.subject or ''):
+                raise ValueError('已发布 PDF 与归档正文不一致')
         print(f'校验通过：{len(entries)} 条正文、Skill 快照、{len(PAGES)} 个网页入口；'
-              f'已发布 PDF v{meta["published_pdf"]["version"]} 保持原字节指纹。')
+              f'已发布 PDF v{meta["published_pdf"]["version"]} 通过指纹及作者页校验。')
         return
     outline_titles = []
     def visit(items):
@@ -216,8 +226,9 @@ def main():
     try:
         import reportlab  # noqa: F401
         import pypdf  # noqa: F401
+        import PIL  # noqa: F401
     except ImportError as error:
-        parser.error(f'缺少 {error.name}；请先安装 reportlab 和 pypdf')
+        parser.error(f'缺少 {error.name}；请先安装 reportlab、pypdf 和 Pillow')
     if not args.check:
         fonts = []
         for option, value in [('--font', args.font), ('--bold-font', args.bold_font)]:

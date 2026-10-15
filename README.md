@@ -26,7 +26,7 @@
 
 点击上方“阅读与检索”或“连续阅读”可直接在线阅读。需要离线使用时，下载项目 ZIP，解压后用浏览器打开 `index.html` 或 `阅读全文.html`。
 
-本轮网页与文字内容已更新，PDF 下载暂保留 v1.21.0。
+本轮网页与文字内容已更新，免费 PDF 保留 v1.21.0 正文，第 2 页增加作者抖音、小红书介绍及二维码，目录与书签已相应调整。
 
 **版本区分：** 本仓库、在线网页及上方下载均为免费公开版。付费下载版为独立交付的 PDF，封面与页脚标注“付费下载版 P1.0”，不随本仓库或项目 ZIP 提供。付费文件提供排版与离线阅读，其正文也可在本项目免费在线阅读；具体购买内容、更新范围和交付方式以正式商品页为准。
 
@@ -107,11 +107,13 @@
 正文在 `book/`，每条的标签用于页面筛选。修改正文后运行：
 
 ```bash
-python3 -m pip install reportlab pypdf
+python3 -m pip install reportlab pypdf Pillow
 python3 tools/build_release.py --pdf-output ../人情世故指南-本地预览.pdf
 ```
 
 统一脚本会检查条目字段、连续编号和交叉引用，生成检索页、连续阅读页、练习与查阅页、完整 Markdown、PDF，并同步 Skill 正文快照。最后校验网页链接、PDF 条目书签和来源链接，避免发布旧的导出文件。版本与定位在 `project.json` 中维护。
+
+免费 PDF 第 2 页由导出脚本自动生成作者介绍。当前保留版的 Markdown 与构建配置归档在 `downloads/source/`，避免改作者页时误带入其他版本正文。
 
 PDF 默认使用 macOS 的中文字体。其他系统可给统一命令加上 `--font /path/to/chinese.ttf --bold-font /path/to/chinese-bold.ttf`，指定常规及粗体中文 TrueType 字体。只检查已生成文件时运行 `python3 tools/build_release.py --check`。暂不发布新版 PDF 时，在 `project.json` 的 `published_pdf` 中登记已发布版本与 SHA-256，并用 `--pdf-output /仓库外路径/本地预览.pdf` 构建。脚本会校验本地新版及线上保留版，防止误覆盖；决定发布新版 PDF 时再移除该登记并运行默认构建。搜索实现放在 `tools/search.js`，正文与标签仍以 `book/` 为准。
 

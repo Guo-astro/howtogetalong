@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="zh-CN"><head><meta charset="utf-8"><link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2032%2032%22%3E%3Crect%20width%3D%2232%22%20height%3D%2232%22%20rx%3D%227%22%20fill%3D%22%23225a43%22%2F%3E%3Cpath%20d%3D%22M6%208c4-1%207%200%2010%202%203-2%206-3%2010-2v16c-4-1-7%200-10%202-3-2-6-3-10-2z%22%20fill%3D%22none%22%20stroke%3D%22white%22%20stroke-width%3D%222%22%20stroke-linejoin%3D%22round%22%2F%3E%3Cpath%20d%3D%22M16%2010v16%22%20stroke%3D%22white%22%20stroke-width%3D%222%22%2F%3E%3C%2Fsvg%3E"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="source-sha256" content="fe039ac7a368b2e02ebbcbfb45e59ffb4e2e24e69f4381340f94f44d8380560f"><meta name="description" content="人情世故指南 · 人情世故指南"><title>人情世故指南 · 人情世故指南</title><style>
+<html lang="zh-CN"><head><meta charset="utf-8"><link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2032%2032%22%3E%3Crect%20width%3D%2232%22%20height%3D%2232%22%20rx%3D%227%22%20fill%3D%22%23225a43%22%2F%3E%3Cpath%20d%3D%22M6%208c4-1%207%200%2010%202%203-2%206-3%2010-2v16c-4-1-7%200-10%202-3-2-6-3-10-2z%22%20fill%3D%22none%22%20stroke%3D%22white%22%20stroke-width%3D%222%22%20stroke-linejoin%3D%22round%22%2F%3E%3Cpath%20d%3D%22M16%2010v16%22%20stroke%3D%22white%22%20stroke-width%3D%222%22%2F%3E%3C%2Fsvg%3E"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="source-sha256" content="cdbc1795780476f96730ebebc2abaf8798320fe2c73abb4d8076642d111bd295"><meta name="description" content="人情世故指南 · 人情世故指南"><title>人情世故指南 · 人情世故指南</title><style>
 :root{--paper:#f7f5ee;--ink:#20382f;--green:#225a43;--muted:#64736b;--line:#dce1d7}
 *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--paper);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;font-size:16px;line-height:1.9;overflow-wrap:anywhere}
 header,main,footer{width:min(100%,860px);margin:auto;padding:0 28px}header{padding-top:24px}.top{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;padding-bottom:18px;border-bottom:1px solid var(--line);font-size:14px}.brand{font-weight:700}.top nav{display:flex;gap:6px 16px;justify-content:flex-end;flex-wrap:wrap}a{color:var(--green);text-underline-offset:4px}a:focus-visible,summary:focus-visible{outline:3px solid #9fc6af;outline-offset:4px}.top a{text-decoration:none}
@@ -40,7 +40,7 @@ footer{border-top:1px solid var(--line);padding-top:20px;padding-bottom:30px;fon
 </tr>
 </tbody></table></div>
 <p>点击上方“阅读与检索”或“连续阅读”可直接在线阅读。需要离线使用时，下载项目 ZIP，解压后用浏览器打开 <code>index.html</code> 或 <code>阅读全文.html</code>。</p>
-<p>本轮网页与文字内容已更新，PDF 下载暂保留 v1.21.0。</p>
+<p>本轮网页与文字内容已更新，免费 PDF 保留 v1.21.0 正文，第 2 页增加作者抖音、小红书介绍及二维码，目录与书签已相应调整。</p>
 <p><strong>版本区分：</strong> 本仓库、在线网页及上方下载均为免费公开版。付费下载版为独立交付的 PDF，封面与页脚标注“付费下载版 P1.0”，不随本仓库或项目 ZIP 提供。付费文件提供排版与离线阅读，其正文也可在本项目免费在线阅读；具体购买内容、更新范围和交付方式以正式商品页为准。</p>
 <p>“HTML 检索页”下载的是项目 ZIP 里的 <code>index.html</code>，保存后可直接用浏览器打开，离线搜索和查看全部条目；需要一并使用其他阅读页与下载资料时，请下载项目 ZIP。</p>
 <h2 id="作者小红书">作者小红书</h2>
@@ -137,9 +137,10 @@ footer{border-top:1px solid var(--line);padding-top:20px;padding-bottom:30px;fon
 <p>例如：“用这份指南帮我处理：同学总让我改 PPT，我不想继续接。”本项目里的 Skill 尚未安装到你的全局技能目录。</p>
 <h2 id="编辑与生成">编辑与生成</h2>
 <p>正文在 <code>book/</code>，每条的标签用于页面筛选。修改正文后运行：</p>
-<pre><code>python3 -m pip install reportlab pypdf
+<pre><code>python3 -m pip install reportlab pypdf Pillow
 python3 tools/build_release.py --pdf-output ../人情世故指南-本地预览.pdf</code></pre>
 <p>统一脚本会检查条目字段、连续编号和交叉引用，生成检索页、连续阅读页、练习与查阅页、完整 Markdown、PDF，并同步 Skill 正文快照。最后校验网页链接、PDF 条目书签和来源链接，避免发布旧的导出文件。版本与定位在 <code>project.json</code> 中维护。</p>
+<p>免费 PDF 第 2 页由导出脚本自动生成作者介绍。当前保留版的 Markdown 与构建配置归档在 <code>downloads/source/</code>，避免改作者页时误带入其他版本正文。</p>
 <p>PDF 默认使用 macOS 的中文字体。其他系统可给统一命令加上 <code>--font /path/to/chinese.ttf --bold-font /path/to/chinese-bold.ttf</code>，指定常规及粗体中文 TrueType 字体。只检查已生成文件时运行 <code>python3 tools/build_release.py --check</code>。暂不发布新版 PDF 时，在 <code>project.json</code> 的 <code>published_pdf</code> 中登记已发布版本与 SHA-256，并用 <code>--pdf-output /仓库外路径/本地预览.pdf</code> 构建。脚本会校验本地新版及线上保留版，防止误覆盖；决定发布新版 PDF 时再移除该登记并运行默认构建。搜索实现放在 <code>tools/search.js</code>，正文与标签仍以 <code>book/</code> 为准。</p>
 <p>修改检索逻辑后，生成页面并运行 <code>node tools/test_search.cjs</code>，检查自然语言搜索、筛选与条目跳转的刷新状态；此检查需要 Node.js。</p>
 <ul>

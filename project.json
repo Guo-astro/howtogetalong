@@ -9,6 +9,10 @@
   "published_pdf": {
     "version": "1.21.0",
     "date": "2026-10-08",
-    "sha256": "75a37a0ca78ef80445c004ea7d0b53e9fa1c30645ba9d88c34058e98a49a7602"
+    "sha256": "4a2c0dd2cd28ad630a291196326f6c0b68aa885123dd3f2fc01aafbb86661444",
+    "source": "downloads/source/公开版-v1.21.0.md",
+    "source_metadata": "downloads/source/公开版-v1.21.0.json",
+    "source_sha256": "1e957f7680ae71a2c9cbb7b382f7226266427da9b4a958155708b58d1c53a12f",
+    "revision": "author-page-2026-10-15"
   }
 }

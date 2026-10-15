@@ -164,10 +164,10 @@ def validate(pdf_path=PUBLISHED_PDF):
     pdf = PdfReader(pdf_path)
     digest = hashlib.sha256(source.read_bytes()).hexdigest()
     if len(pdf.pages) < 3 or not all(label in pdf.pages[1].extract_text()
-                                   for label in ['关注作者', '抖音', '793147359']):
+                                   for label in ['关注作者', '793147359', '4287159956']):
         raise ValueError('PDF 第 2 页缺少作者账号介绍')
-    if pdf.pages[1].images or '小红书' in pdf.pages[1].extract_text():
-        raise ValueError('免费 PDF 作者页应只保留抖音文字，不含图片或小红书')
+    if len(pdf.pages[1].images) != 2 or '小红书' not in pdf.pages[1].extract_text():
+        raise ValueError('GitHub 免费 PDF 作者页应保留抖音与小红书的两张账号图片')
     if '目录' not in pdf.pages[2].extract_text():
         raise ValueError('PDF 目录页位置不正确')
     if verify_pdf_version(pdf_path, pdf, digest, meta) == 'preserved':

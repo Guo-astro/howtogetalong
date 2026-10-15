@@ -195,8 +195,11 @@ def build(input_path=ROOT / '完整指南.md', output_path=OUT,
     body, chapter, heading, example = styles()
     output_path.parent.mkdir(parents=True, exist_ok=True)
     meta = metadata if metadata is not None else json.loads((ROOT / 'project.json').read_text(encoding='utf-8'))
+    cover_author = ParagraphStyle('cover-author', parent=body, alignment=TA_CENTER,
+                                  fontName='GuideChineseBold', fontSize=12, leading=20, spaceAfter=0)
     story = [Spacer(1, 34), Image(str(ROOT / meta.get('cover', 'docs/assets/cover-growth-v120.png')),
-             width=A4[0] - 92, height=(A4[0] - 92) * 2 / 3), Spacer(1, 30)]
+             width=A4[0] - 92, height=(A4[0] - 92) * 2 / 3), Spacer(1, 10),
+             Paragraph('抖音：Y O L O · 抖音号：793147359', cover_author), Spacer(1, 16)]
     first_title, in_body, in_sources = True, False, False
     chapter_number, chapter_index = None, 0
     for line in lines:

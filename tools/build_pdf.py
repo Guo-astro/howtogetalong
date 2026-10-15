@@ -7,7 +7,6 @@ import re
 from urllib.parse import urljoin
 from xml.sax.saxutils import escape, quoteattr
 
-from PIL import Image as PillowImage
 from reportlab.lib.enums import TA_CENTER
 from reportlab.lib import colors
 from reportlab.lib.pagesizes import A4
@@ -16,7 +15,6 @@ from reportlab.pdfbase import pdfmetrics
 from reportlab.pdfbase.ttfonts import TTFont, TTFError
 from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer, PageBreak, Image
 from reportlab.platypus.tableofcontents import TableOfContents
-from reportlab.platypus import Table, TableStyle
 from site_assets import COPYRIGHT_NOTICE
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -175,39 +173,17 @@ def author_introduction(body, chapter):
                            fontSize=24, leading=34, spaceAfter=16)
     platform = ParagraphStyle('author-platform', parent=centered,
                               fontName='GuideChineseBold', fontSize=15, leading=24)
-    account = ParagraphStyle('author-account', parent=centered, fontSize=10.5, leading=18)
-    profiles = [
-        ('抖音', 'Y O L O', '793147359', 'douyin-yolo.jpg'),
-        ('小红书', 'YOLO', '4287159956', 'xiaohongshu-yolo-20261012.jpg'),
-    ]
-    heights = []
-    for _, _, _, filename in profiles:
-        with PillowImage.open(ROOT / 'docs/assets' / filename) as original:
-            heights.append(210 * original.height / original.width)
-    columns = []
-    for (label, name, number, filename), height in zip(profiles, heights):
-        columns.append([
-            Paragraph(label, platform), Paragraph(name, centered),
-            Paragraph(label + '号：' + number, account),
-            Image(str(ROOT / 'docs/assets' / filename), width=210, height=height),
-            Spacer(1, max(heights) - height + 12),
-            Paragraph('打开' + label + '扫一扫', centered),
-        ])
-    accounts = Table([columns], colWidths=[(A4[0] - 104) / 2] * 2,
-                     style=TableStyle([
-                         ('VALIGN', (0, 0), (-1, -1), 'TOP'),
-                         ('LEFTPADDING', (0, 0), (-1, -1), 8),
-                         ('RIGHTPADDING', (0, 0), (-1, -1), 8),
-                         ('TOPPADDING', (0, 0), (-1, -1), 0),
-                         ('BOTTOMPADDING', (0, 0), (-1, -1), 0),
-                     ]))
+    name = ParagraphStyle('author-name', parent=centered,
+                          fontName='GuideChineseBold', fontSize=22, leading=32)
+    account = ParagraphStyle('author-account', parent=centered, fontSize=14, leading=24)
     return [PageBreak(), Spacer(1, 18),
             bookmarked_paragraph('关注作者', title, 'author-accounts', toc=True),
             Paragraph('作者：YOLO · 《人情世故指南》整理与维护', centered),
-            Paragraph('这是免费公开版。欢迎到抖音或小红书关注项目更新，交流阅读心得。'
+            Paragraph('这是免费公开版。欢迎到抖音关注项目更新，交流阅读心得。'
                       '<br/>如果这份指南对你有帮助，欢迎关注、点赞支持一下。谢谢各位的支持！', centered),
-            Spacer(1, 12), accounts, Spacer(1, 12),
-            Paragraph('打开对应 App 扫码，或搜索上方账号找到作者。', centered)]
+            Spacer(1, 50), Paragraph('抖音', platform),
+            Paragraph('Y O L O', name), Paragraph('抖音号：793147359', account),
+            Spacer(1, 14), Paragraph('打开抖音，搜索上方抖音号找到作者。', centered)]
 
 
 def build(input_path=ROOT / '完整指南.md', output_path=OUT,

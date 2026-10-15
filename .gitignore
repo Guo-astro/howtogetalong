@@ -5,3 +5,8 @@ __pycache__/
 output/playwright/
 # Paid delivery PDFs are kept outside this public repository.
 *付费下载版*.pdf
+
+# Do not stage a paid working directory accidentally copied here.
+/HowToGetAlong-Paid/
+/paid/
+/private/

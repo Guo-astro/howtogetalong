@@ -1,18 +1,9 @@
 {
   "name": "人情世故指南",
-  "version": "1.22.1",
-  "date": "2026-10-13",
+  "version": "1.23.0",
+  "date": "2026-10-15",
   "copyright": "© 2026 kkk-bot。保留所有权利。",
   "positioning": "一份面向大学生和初入职场者的相处指南：讲清怎么做、怎么说，以及可能付出什么代价。",
   "disclaimer": "本项目内容仅供学习与交流参考，属于经验建议，不保证适用于所有人或取得特定效果。具体问题请根据事实情况分析，结合自身处境、关系与适用规则独立判断，不宜直接照搬示例。",
-  "cover": "docs/assets/cover-growth-v122.png",
-  "published_pdf": {
-    "version": "1.21.0",
-    "date": "2026-10-08",
-    "sha256": "4a2c0dd2cd28ad630a291196326f6c0b68aa885123dd3f2fc01aafbb86661444",
-    "source": "downloads/source/公开版-v1.21.0.md",
-    "source_metadata": "downloads/source/公开版-v1.21.0.json",
-    "source_sha256": "1e957f7680ae71a2c9cbb7b382f7226266427da9b4a958155708b58d1c53a12f",
-    "revision": "author-page-2026-10-15"
-  }
+  "cover": "docs/assets/cover-growth-v122.png"
 }

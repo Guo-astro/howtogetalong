@@ -18,7 +18,7 @@
 
 | 入口 | 内容 |
 |---|---|
-| 免费下载 | [公开版 PDF v1.21.0](https://github.com/kkk-bot/HowToGetAlong/raw/refs/heads/main/downloads/%E4%BA%BA%E6%83%85%E4%B8%96%E6%95%85%E6%8C%87%E5%8D%97.pdf) · [HTML 检索页](https://kkk-bot.github.io/HowToGetAlong/downloads/html.html) · [Markdown](https://github.com/kkk-bot/HowToGetAlong/raw/refs/heads/main/%E5%AE%8C%E6%95%B4%E6%8C%87%E5%8D%97.md) · [项目 ZIP](https://github.com/kkk-bot/HowToGetAlong/archive/refs/heads/main.zip) |
+| 免费下载 | [免费版 PDF v1.23.0](https://github.com/kkk-bot/HowToGetAlong/raw/refs/heads/main/downloads/%E4%BA%BA%E6%83%85%E4%B8%96%E6%95%85%E6%8C%87%E5%8D%97.pdf) · [HTML 检索页](https://kkk-bot.github.io/HowToGetAlong/downloads/html.html) · [Markdown](https://github.com/kkk-bot/HowToGetAlong/raw/refs/heads/main/%E5%AE%8C%E6%95%B4%E6%8C%87%E5%8D%97.md) · [项目 ZIP](https://github.com/kkk-bot/HowToGetAlong/archive/refs/heads/main.zip) |
 | 阅读 | [完整文字版](完整指南.md) · [使用指南](https://kkk-bot.github.io/HowToGetAlong/docs/usage.html) |
 | 练习 | [交流复盘与场景练习](https://kkk-bot.github.io/HowToGetAlong/docs/practice.html) |
 | 反馈 | [读者反馈与案例征集](https://kkk-bot.github.io/HowToGetAlong/docs/feedback.html) · [填写读者反馈](https://github.com/kkk-bot/HowToGetAlong/issues/new?template=reading-feedback.yml) |
@@ -26,9 +26,9 @@
 
 点击上方“阅读与检索”或“连续阅读”可直接在线阅读。需要离线使用时，下载项目 ZIP，解压后用浏览器打开 `index.html` 或 `阅读全文.html`。
 
-本轮网页与文字内容已更新，免费 PDF 保留 v1.21.0 正文，第 2 页增加作者抖音、小红书介绍及二维码，目录与书签已相应调整。
+免费版网页、文字与 PDF 已统一更新至 v1.23.0，十章各完善一个日常场景，保留 10 章 77 条及原条号；PDF 第 2 页保留作者抖音、小红书介绍及二维码。
 
-**版本区分：** 本仓库、在线网页及上方下载均为免费公开版。付费下载版为独立交付的 PDF，封面与页脚标注“付费下载版 P1.0”，不随本仓库或项目 ZIP 提供。付费文件提供排版与离线阅读，其正文也可在本项目免费在线阅读；具体购买内容、更新范围和交付方式以正式商品页为准。
+**版本区分：** 本仓库、在线网页及上方下载均为免费公开版。付费版单独维护内容、版本和 PDF，不随本仓库或项目 ZIP 提供，也不与免费版自动同步。现有付费 P1.0 基于此前公开的 v1.22.1 正文，尚无独有正文；具体购买内容、更新范围和交付方式以正式商品页为准。
 
 “HTML 检索页”下载的是项目 ZIP 里的 `index.html`，保存后可直接用浏览器打开，离线搜索和查看全部条目；需要一并使用其他阅读页与下载资料时，请下载项目 ZIP。
 
@@ -36,7 +36,7 @@
 
 **YOLO** · 小红书号：**4287159956**
 
-欢迎关注项目更新，交流阅读心得。**《人情世故指南·付费下载版》采用独立 PDF 文件交付，正文仍可在本项目免费在线阅读。** 内容预览、上线消息与购买方式会在小红书发布，具体内容、更新范围和交付方式以正式商品页面为准。
+欢迎关注项目更新，交流阅读心得。**《人情世故指南·付费下载版》采用独立 PDF 文件交付，与免费版分别维护；现有 P1.0 基于此前公开正文，尚无独有正文。** 内容预览、上线消息与购买方式会在小红书发布，具体内容、更新范围和交付方式以正式商品页面为准。
 
 打开小红书扫描下方二维码，或搜索小红书号 **4287159956** 找到我。GitHub 公开版仍可免费阅读。
 
@@ -108,12 +108,12 @@
 
 ```bash
 python3 -m pip install reportlab pypdf Pillow
-python3 tools/build_release.py --pdf-output ../人情世故指南-本地预览.pdf
+python3 tools/build_release.py
 ```
 
 统一脚本会检查条目字段、连续编号和交叉引用，生成检索页、连续阅读页、练习与查阅页、完整 Markdown、PDF，并同步 Skill 正文快照。最后校验网页链接、PDF 条目书签和来源链接，避免发布旧的导出文件。版本与定位在 `project.json` 中维护。
 
-免费 PDF 第 2 页由导出脚本自动生成作者介绍。当前保留版的 Markdown 与构建配置归档在 `downloads/source/`，避免改作者页时误带入其他版本正文。
+免费 PDF 第 2 页由导出脚本自动生成作者介绍，默认导出与本仓库网页一致的正文。旧 v1.21.0 的 Markdown 与构建配置归档在 `downloads/source/`，仅供历史核对，不用于当前发布。
 
 PDF 默认使用 macOS 的中文字体。其他系统可给统一命令加上 `--font /path/to/chinese.ttf --bold-font /path/to/chinese-bold.ttf`，指定常规及粗体中文 TrueType 字体。只检查已生成文件时运行 `python3 tools/build_release.py --check`。暂不发布新版 PDF 时，在 `project.json` 的 `published_pdf` 中登记已发布版本与 SHA-256，并用 `--pdf-output /仓库外路径/本地预览.pdf` 构建。脚本会校验本地新版及线上保留版，防止误覆盖；决定发布新版 PDF 时再移除该登记并运行默认构建。搜索实现放在 `tools/search.js`，正文与标签仍以 `book/` 为准。
 

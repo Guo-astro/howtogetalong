@@ -107,6 +107,10 @@ search.query('5.7');
 assert.equal(search.cards.size, 0, 'Entry-number search must respect selected filters');
 search.element('chapter').value = '';
 for (const [query, target] of [
+  ['优惠券怎么AA', 'entry-4.3'], ['配送费怎么分', 'entry-4.3'],
+  ['拼单退款', 'entry-4.3'], ['数据没到怎么汇报', 'entry-3.5'],
+  ['没参加会议被分配任务', 'entry-8.2'], ['用AI整理聊天记录', 'entry-5.7'],
+  ['错过约好的电话', 'entry-9.4'], ['不是我的功劳被夸', 'entry-7.10'],
   ['开会被打断', 'entry-8.8'], ['总被打断怎么办', 'entry-8.8'],
   ['别人抢话', 'entry-8.8'], ['奶茶拼单', 'entry-4.3'],
   ['领导说一起点饮料', 'entry-4.3'], ['领导点奶茶要不要AA', 'entry-4.3'],
@@ -130,6 +134,8 @@ for (const [query, target] of [
   search.query(query);
   assert.equal(search.ids()[0], target, query);
 }
+search.query('优惠券怎么AA 火星猫');
+assert.equal(search.cards.size, 0, 'New aliases must retain unrelated query terms');
 search.query('怎么样送礼');
 assert(search.ids().includes('entry-4.4'), 'Longer question prefixes must not leave a stray character');
 for (const query of ['被夸奖怎么回复', '别人夸我如何回应', '老师夸我怎么回复']) {

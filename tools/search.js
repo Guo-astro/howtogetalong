@@ -125,6 +125,12 @@ for (const [id, key] of [['topic', '主题'], ['person', '对象']]) {
 // A small, inspectable phrase dictionary, rather than splitting every Chinese
 // character. Specific phrases such as “借钱不还” are consumed before “借钱”.
 const concepts = [
+  { aliases: ['优惠券怎么AA', '优惠券AA', '拼单优惠怎么分', '配送费怎么分', '拼单退款'], matches: ['用优惠券拼单'] },
+  { aliases: ['任务卡住怎么汇报', '数据没到怎么汇报', '等数据怎么汇报'], matches: ['数据迟到影响交付'] },
+  { aliases: ['没参加会议被分配任务', '缺席会议被分任务', '没去开会被分任务'], matches: ['需要缺席同事承担的任务'] },
+  { aliases: ['用AI整理聊天记录', 'AI整理聊天', '聊天发给AI'], matches: ['用 AI 或其他外部工具'] },
+  { aliases: ['错过约好的电话', '忘了给伴侣打电话', '约好的通话没打'], matches: ['临时错过约好的通话'] },
+  { aliases: ['不是我的功劳被夸', '别人把同事的功劳算给我'], matches: ['功劳被说错'] },
   { aliases: ['朋友让我代签到', '帮忙代签到', '代签到', '代签', '冒用身份', '借账号参加考核'], matches: ['代签到', '冒用身份'] },
   { aliases: ['同事让我站队', '被要求站队', '被拉进八卦', '办公室八卦', '八卦', '站队'], matches: ['八卦', '站队'] },
   { aliases: ['朋友说不给面子', '不给我面子', '不给面子', '关系施压'], matches: ['不给面子', '关系施压'] },

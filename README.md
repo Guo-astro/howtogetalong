@@ -56,7 +56,7 @@
 
 觉得作品不错的友友们，可以请作者喝一杯奶茶。有没有赞赏都没关系，不会影响作品质量。谢谢各位的支持！
 
-![Eric 的微信赞赏码](docs/assets/appreciation-code.jpg)
+<img src="docs/assets/appreciation-code.jpg" alt="Eric 的微信赞赏码" width="300">
 
 ---
 
